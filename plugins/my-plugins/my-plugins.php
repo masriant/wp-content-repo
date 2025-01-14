@@ -44,9 +44,7 @@ function add_open_graph_tags() {
         echo '<meta property="og:url" content="' . esc_url($url) . '" />' . "\n";
         echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '" />' . "\n";
         echo '<meta property="og:locale" content="' . esc_attr($locale) . '" />' . "\n";
-        echo '<meta property="article:published_time" content="' . esc_attr($published_time) . '" />' . "\n";
-        echo '<meta property="article:modified_time" content="' . esc_attr($modified_time) . '" />' . "\n";
-        echo '<meta property="article:author" content="' . esc_attr($author) . '" />' . "\n";
+        echo '<meta property="og:type" content="article" />' . "\n"; // Added og:type
         echo '<meta name="keywords" content="' . esc_attr($keywords) . '" />' . "\n";
     }
 }
@@ -76,10 +74,12 @@ function add_twitter_meta_tags() {
         $description = mb_substr($description, 0, 140);
 
         // Output Twitter meta tags
+        echo '<meta name="twitter:card" content="summary_large_image" />' . "\n"; // Added twitter:card
         echo '<meta name="twitter:title" content="' . esc_attr($title) . '" />' . "\n";
         echo '<meta name="twitter:description" content="' . esc_attr($description) . '" />' . "\n";
         echo '<meta name="twitter:image" content="' . esc_url($image) . '" />' . "\n";
         echo '<meta name="twitter:url" content="' . esc_url($url) . '" />' . "\n";
+        echo '<meta name="twitter:site" content="@bimtekhub" />' . "\n"; // Added twitter:site
     }
 }
 
