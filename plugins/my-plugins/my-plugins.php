@@ -38,13 +38,20 @@ function add_open_graph_tags() {
         $keywords = implode(', ', $tag_names);
 
         // Output Open Graph tags
+        if (has_post_format('article')) {
+            echo '<meta property="og:type" content="article" />' . "\n";
+        }
+        if ($image) {
+            echo '<meta property="og:image" content="' . esc_url($image) . '" />' . "\n";
+        }
         echo '<meta property="og:title" content="' . esc_attr($title) . '" />' . "\n";
         echo '<meta property="og:description" content="' . esc_attr($description) . '" />' . "\n";
-        echo '<meta property="og:image" content="' . esc_url($image) . '" />' . "\n";
         echo '<meta property="og:url" content="' . esc_url($url) . '" />' . "\n";
         echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '" />' . "\n";
         echo '<meta property="og:locale" content="' . esc_attr($locale) . '" />' . "\n";
-        echo '<meta property="og:type" content="article" />' . "\n"; // Added og:type
+        echo '<meta property="article:published_time" content="' . esc_attr($published_time) . '" />' . "\n";
+        echo '<meta property="article:modified_time" content="' . esc_attr($modified_time) . '" />' . "\n";
+        echo '<meta property="article:author" content="' . esc_attr($author) . '" />' . "\n";
         echo '<meta name="keywords" content="' . esc_attr($keywords) . '" />' . "\n";
     }
 }
