@@ -16,4 +16,17 @@ function generatepress_child_enqueue_styles() {
     // Enqueue Bootstrap JS
     wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js', array(), null, true);
 }
+
+// Add Google site verification meta tag
+function add_google_site_verification() {
+    echo '<meta name="google-site-verification" content="av2rpSIYvX4gfgjThO7LgHUib4d-JfZTgwMo_3w_BME" />';
+}
+
+// Add robots meta tag
+function add_robots_meta_tag() {
+    echo '<meta name="robots" content="index, follow" />';
+}
+
+add_action('wp_head', 'add_google_site_verification');
+add_action('wp_head', 'add_robots_meta_tag');
 add_action('wp_enqueue_scripts', 'generatepress_child_enqueue_styles');
