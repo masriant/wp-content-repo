@@ -7,19 +7,19 @@
  * Author URI: https://bimtekhub.com
  */
 
-function disable_wp_emojis() {
-    remove_action('wp_head', 'print_emoji_detection_script', 7);
-    remove_action('wp_print_styles', 'print_emoji_styles');
-    remove_action('admin_print_scripts', 'print_emoji_detection_script');
-    remove_action('admin_print_styles', 'print_emoji_styles');
-    remove_filter('the_content_feed', 'wp_staticize_emoji');
-    remove_filter('comment_text_rss', 'wp_staticize_emoji');
-    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
-    add_filter('tiny_mce_plugins', 'disable_emojis_tinymce');
-}
+// Code to disable emojis
+add_filter('emoji_svg_url', '__return_false');
+add_filter('wp_resource_hints', function($urls, $relation_type) {
+    if ('dns-prefetch' === $relation_type) {
+        $urls = array_diff($urls, array('https://s.w.org/images/core/emoji/'));
+    }
+    return $urls;
+}, 10, 2);
 
-function disable_emojis_tinymce($plugins) {
-    return array_diff($plugins, array('wpemoji'));
+// Admin notice for plugin usage
+function disable_emojis_admin_notice() {
+    echo '<div class="notice notice-info is-dismissible">
+        <p><strong>Disable Emojis Plugin Activated:</strong> This plugin disables emojis in WordPress. No additional settings are required.</p>
+    </div>';
 }
-
-add_action('init', 'disable_wp_emojis');
+add_action('admin_notices', 'disable_emojis_admin_notice');
