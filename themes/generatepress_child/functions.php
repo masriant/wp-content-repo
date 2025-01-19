@@ -15,8 +15,11 @@ function add_meta_description() {
     global $post;
     if (is_single()) {
         $description = get_the_excerpt($post->ID); // Get the post excerpt as the meta description
+        if (empty($description)) {
+            $description = "Portal Informasi Bimbingan Teknis Nasional, Pendidikan, Pelatihan Terupdate, Temukan Materi Bimtek Diklat OPD, ASN, DPRD, Dana Desa, Regulasi Pemerintah Terkini"; // Default description
+        }
     } else {
-        $description = 'Default description for the site or page.'; // Default description for other pages
+        $description = "Portal Informasi Bimbingan Teknis Nasional, Pendidikan, Pelatihan Terupdate, Temukan Materi Bimtek Diklat OPD, ASN, DPRD, Dana Desa, Regulasi Pemerintah Terkini"; // Default description for other pages
     }
     echo '<meta name="description" content="' . esc_attr($description) . '">' . "\n";
 }
@@ -24,7 +27,21 @@ add_action('wp_head', 'add_meta_description');
 
 // Function to add meta keywords
 function add_meta_keywords() {
-    echo '<meta name="keywords" content="keyword1, keyword2, keyword3">' . "\n"; // Replace with actual keywords
+    if (is_single()) {
+        global $post;
+        $tags = get_the_tags($post->ID);
+        if ($tags) {
+            $keywords = array();
+            foreach ($tags as $tag) {
+                $keywords[] = $tag->name; // Get the tag name
+            }
+            echo '<meta name="keywords" content="' . esc_attr(implode(', ', $keywords)) . '">' . "\n"; // Join tags into a string
+        } else {
+            echo '<meta name="keywords" content="default, keywords">' . "\n"; // Default keywords if no tags
+        }
+    } else {
+        echo '<meta name="keywords" content="default, keywords">' . "\n"; // Default keywords for non-single pages
+    }
 }
 add_action('wp_head', 'add_meta_keywords');
 
