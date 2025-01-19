@@ -23,3 +23,64 @@ Disallow: /
 Sitemap: https://www.bimtekhub.com/sitemap.xml
 Sitemap: https://www.bimtekhub.com/sitemap.rss
 Sitemap: https://bimtekhub.com/sitemap_index.xml
+
+
+
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /private/
+Allow: /
+Allow: /public/
+Allow: /wp-content/uploads/
+Allow: /wp-admin/admin-ajax.php
+
+User-agent: Googlebot
+Disallow: /private/
+Disallow: /nogooglebot/
+Allow: /
+
+User-agent: BadBot
+Disallow: /
+
+Sitemap: https://bimtekhub.com/wp-sitemap.xml
+Sitemap: https://www.bimtekhub.com/sitemap.xml
+Sitemap: https://www.bimtekhub.com/sitemap.rss
+
+
+# Global settings for all user agents
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /private/
+Allow: /wp-content/uploads/
+Allow: /public/
+
+# Specific settings for Googlebot
+User-agent: Googlebot
+Disallow: /private/
+Disallow: /nogooglebot/
+Allow: /
+
+# Block completely for BadBot
+User-agent: BadBot
+Disallow: /
+
+# Specific settings for Twitterbot
+User-agent: Twitterbot
+Disallow: *
+
+# Allow Twitterbot to access images and archives
+User-agent: Twitterbot
+Allow: /images
+Allow: /archives
+
+# Sitemap locations
+Sitemap: https://www.bimtekhub.com/sitemap.xml
+Sitemap: https://www.bimtekhub.com/sitemap.rss
+Sitemap: https://bimtekhub.com/sitemap_index.xml

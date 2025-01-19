@@ -9,11 +9,7 @@
 
 // Function to add robots meta tag
 function add_robots_meta_tag() {
-    if (is_single()) {
-        echo '<meta name="robots" content="index, follow">' . "\n";
-    } else {
-        echo '<meta name="robots" content="noindex, nofollow">' . "\n";
-    }
+    echo '<meta name="robots" content="index, follow">' . "\n";
 }
 add_action('wp_head', 'add_robots_meta_tag');
 

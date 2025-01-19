@@ -10,6 +10,24 @@ function add_meta_tags() {
 }
 add_action('wp_head', 'add_meta_tags', 5); // Set priority to 5
 
+// Function to add meta description
+function add_meta_description() {
+    global $post;
+    if (is_single()) {
+        $description = get_the_excerpt($post->ID); // Get the post excerpt as the meta description
+    } else {
+        $description = 'Default description for the site or page.'; // Default description for other pages
+    }
+    echo '<meta name="description" content="' . esc_attr($description) . '">' . "\n";
+}
+add_action('wp_head', 'add_meta_description');
+
+// Function to add meta keywords
+function add_meta_keywords() {
+    echo '<meta name="keywords" content="keyword1, keyword2, keyword3">' . "\n"; // Replace with actual keywords
+}
+add_action('wp_head', 'add_meta_keywords');
+
 // Enqueue Font Awesome
 function enqueue_font_awesome() {
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
