@@ -7,125 +7,122 @@
  * Author URI: https://bimtekhub.com
  */
 
-function generate_robots_txt() {
-    header('Content-Type: text/plain');
+// Hook to 'robots_txt' filter to customize the robots.txt content
+add_filter('robots_txt', 'custom_robots_txt', 10, 2);
 
-    // General rules for all user agents
-    echo "User-agent: *\n";
-    echo "Disallow: /wp-admin/\n";
-    echo "Disallow: /admin/\n";
-    echo "Disallow: /login/\n";
-    echo "Disallow: /register/\n";
-    echo "Disallow: /private/\n";
-    echo "Disallow: /*.pdf$\n";
-    echo "Disallow: /*.doc$\n";
-    echo "Disallow: /*.docx$\n";
-    echo "Disallow: /*.xls$\n";
-    echo "Disallow: /*.xlsx$\n";
-    echo "Disallow: /search/\n";
-    echo "Disallow: /cgi-bin/\n";
-    echo "Disallow: /scripts/\n";
-    echo "Disallow: /tmp/\n";
-    echo "Allow: /wp-admin/admin-ajax.php\n";
-    echo "Allow: /wp-content/uploads/\n";
-    echo "Allow: /public/\n";
-    echo "\n";
+function custom_robots_txt($output, $public) {
+    $output .= "User-Agent: *\n";
+    $output .= "Disallow: /wp-admin/\n";
+    $output .= "Disallow: /admin/\n";
+    $output .= "Disallow: /login/\n";
+    $output .= "Disallow: /register/\n";
+    $output .= "Disallow: /private/\n";
+    $output .= "Disallow: /*.pdf$\n";
+    $output .= "Disallow: /*.doc$\n";
+    $output .= "Disallow: /*.docx$\n";
+    $output .= "Disallow: /*.xls$\n";
+    $output .= "Disallow: /*.xlsx$\n";
+    $output .= "Disallow: /search/\n";
+    $output .= "Disallow: /cgi-bin/\n";
+    $output .= "Disallow: /scripts/\n";
+    $output .= "Disallow: /tmp/\n";
+    $output .= "Allow: /wp-admin/admin-ajax.php\n";
+    $output .= "Allow: /wp-content/uploads/\n";
+    $output .= "Allow: /public/\n\n";
 
-    // Specific rules for Googlebot
-    echo "User-agent: Googlebot\n";
-    echo "Disallow: /private/\n";
-    echo "Disallow: /nogooglebot/\n";
-    echo "Disallow: /wp-admin/\n";
-    echo "Disallow: /admin/\n";
-    echo "Disallow: /login/\n";
-    echo "Disallow: /register/\n";
-    echo "Disallow: /*.pdf$\n";
-    echo "Disallow: /*.doc$\n";
-    echo "Disallow: /*.docx$\n";
-    echo "Disallow: /*.xls$\n";
-    echo "Disallow: /*.xlsx$\n";
-    echo "Disallow: /search/\n";
-    echo "Allow: /wp-admin/admin-ajax.php\n";
-    echo "Allow: /wp-content/uploads/\n";
-    echo "Allow: /public/\n";
-    echo "\n";
+    $output .= "User-Agent: Googlebot\n";
+    $output .= "Disallow: /private/\n";
+    $output .= "Disallow: /nogooglebot/\n";
+    $output .= "Disallow: /wp-admin/\n";
+    $output .= "Disallow: /admin/\n";
+    $output .= "Disallow: /login/\n";
+    $output .= "Disallow: /register/\n";
+    $output .= "Disallow: /*.pdf$\n";
+    $output .= "Disallow: /*.doc$\n";
+    $output .= "Disallow: /*.docx$\n";
+    $output .= "Disallow: /*.xls$\n";
+    $output .= "Disallow: /*.xlsx$\n";
+    $output .= "Disallow: /search/\n";
+    $output .= "Allow: /wp-admin/admin-ajax.php\n";
+    $output .= "Allow: /wp-content/uploads/\n";
+    $output .= "Allow: /public/\n\n";
 
-    // Rules for BingBot
-    echo "User-Agent: BingBot\n";
-    echo "Disallow: /cgi-bin/\n";
-    echo "Disallow: /scripts/\n";
-    echo "Disallow: /tmp/\n";
-    echo "Allow: /\n";
-    echo "\n";
+    $output .= "User-Agent: BingBot\n";
+    $output .= "Disallow: /cgi-bin/\n";
+    $output .= "Disallow: /scripts/\n";
+    $output .= "Disallow: /tmp/\n";
+    $output .= "Allow: /\n\n";
 
-    // Rules for Twitterbot
-    echo "User-agent: Twitterbot\n";
-    echo "Allow: /images\n";
-    echo "Allow: /archives\n";
-    echo "Disallow: *\n";
-    echo "Allow: /wp-admin/admin-ajax.php\n";
-    echo "Allow: /wp-content/uploads/\n";
-    echo "Allow: /public/\n";
-    echo "Disallow: /wp-admin/\n";
-    echo "Disallow: /admin/\n";
-    echo "Disallow: /login/\n";
-    echo "Disallow: /register/\n";
-    echo "Disallow: /private/\n";
-    echo "Disallow: /*.pdf$\n";
-    echo "Disallow: /*.doc$\n";
-    echo "Disallow: /*.docx$\n";
-    echo "Disallow: /*.xls$\n";
-    echo "Disallow: /*.xlsx$\n";
-    echo "Disallow: /search/\n";
-    echo "\n";
+    $output .= "User-agent: Twitterbot\n";
+    $output .= "Allow: /images\n";
+    $output .= "Allow: /archives\n";
+    $output .= "Disallow: *\n";
+    $output .= "Allow: /wp-admin/admin-ajax.php\n";
+    $output .= "Allow: /wp-content/uploads/\n";
+    $output .= "Allow: /public/\n";
+    $output .= "Disallow: /wp-admin/\n";
+    $output .= "Disallow: /admin/\n";
+    $output .= "Disallow: /login/\n";
+    $output .= "Disallow: /register/\n";
+    $output .= "Disallow: /private/\n";
+    $output .= "Disallow: /*.pdf$\n";
+    $output .= "Disallow: /*.doc$\n";
+    $output .= "Disallow: /*.docx$\n";
+    $output .= "Disallow: /*.xls$\n";
+    $output .= "Disallow: /*.xlsx$\n";
+    $output .= "Disallow: /search/\n\n";
 
-    // Rules for BadBot
-    echo "User-agent: BadBot\n";
-    echo "Disallow: /\n";
-    echo "Allow: /wp-admin/admin-ajax.php\n";
-    echo "Allow: /wp-content/uploads/\n";
-    echo "Allow: /public/\n";
-    echo "\n";
+    $output .= "User-agent: BadBot\n";
+    $output .= "Disallow: /\n";
+    $output .= "Allow: /wp-admin/admin-ajax.php\n";
+    $output .= "Allow: /wp-content/uploads/\n";
+    $output .= "Allow: /public/\n";
+    $output .= "Disallow: /wp-admin/\n";
+    $output .= "Disallow: /admin/\n";
+    $output .= "Disallow: /login/\n";
+    $output .= "Disallow: /register/\n";
+    $output .= "Disallow: /private/\n";
+    $output .= "Disallow: /*.pdf$\n";
+    $output .= "Disallow: /*.doc$\n";
+    $output .= "Disallow: /*.docx$\n";
+    $output .= "Disallow: /*.xls$\n";
+    $output .= "Disallow: /*.xlsx$\n";
+    $output .= "Disallow: /search/\n\n";
 
-    // Rules for Ahrefs
-    echo "User-agent: AhrefsSiteAudit\n";
-    echo "Allow: /\n";
-    echo "Allow: /wp-admin/admin-ajax.php\n";
-    echo "Allow: /wp-content/uploads/\n";
-    echo "Allow: /public/\n";
-    echo "Disallow: /wp-admin/\n";
-    echo "Disallow: /admin/\n";
-    echo "Disallow: /login/\n";
-    echo "Disallow: /register/\n";
-    echo "Disallow: /private/\n";
-    echo "Disallow: /*.pdf$\n";
-    echo "Disallow: /*.doc$\n";
-    echo "Disallow: /*.docx$\n";
-    echo "Disallow: /*.xls$\n";
-    echo "Disallow: /*.xlsx$\n";
-    echo "Disallow: /search/\n";
-    echo "\n";
+    $output .= "User-agent: AhrefsSiteAudit\n";
+    $output .= "Allow: /\n";
+    $output .= "Allow: /wp-admin/admin-ajax.php\n";
+    $output .= "Allow: /wp-content/uploads/\n";
+    $output .= "Allow: /public/\n";
+    $output .= "Disallow: /wp-admin/\n";
+    $output .= "Disallow: /admin/\n";
+    $output .= "Disallow: /login/\n";
+    $output .= "Disallow: /register/\n";
+    $output .= "Disallow: /private/\n";
+    $output .= "Disallow: /*.pdf$\n";
+    $output .= "Disallow: /*.doc$\n";
+    $output .= "Disallow: /*.docx$\n";
+    $output .= "Disallow: /*.xls$\n";
+    $output .= "Disallow: /*.xlsx$\n";
+    $output .= "Disallow: /search/\n\n";
 
-    // Rules for AhrefsBot
-    echo "User-agent: AhrefsBot\n";
-    echo "Allow: /\n";
-    echo "Allow: /wp-admin/admin-ajax.php\n";
-    echo "Allow: /wp-content/uploads/\n";
-    echo "Allow: /public/\n";
-    echo "Disallow: /wp-admin/\n";
-    echo "Disallow: /admin/\n";
-    echo "Disallow: /login/\n";
-    echo "Disallow: /register/\n";
-    echo "Disallow: /private/\n";
-    echo "Disallow: /*.pdf$\n";
-    echo "Disallow: /*.doc$\n";
-    echo "Disallow: /*.docx$\n";
-    echo "Disallow: /*.xls$\n";
-    echo "Disallow: /*.xlsx$\n";
-    echo "Disallow: /search/\n";
+    $output .= "User-agent: AhrefsBot\n";
+    $output .= "Allow: /\n";
+    $output .= "Allow: /wp-admin/admin-ajax.php\n";
+    $output .= "Allow: /wp-content/uploads/\n";
+    $output .= "Allow: /public/\n";
+    $output .= "Disallow: /wp-admin/\n";
+    $output .= "Disallow: /admin/\n";
+    $output .= "Disallow: /login/\n";
+    $output .= "Disallow: /register/\n";
+    $output .= "Disallow: /private/\n";
+    $output .= "Disallow: /*.pdf$\n";
+    $output .= "Disallow: /*.doc$\n";
+    $output .= "Disallow: /*.docx$\n";
+    $output .= "Disallow: /*.xls$\n";
+    $output .= "Disallow: /*.xlsx$\n";
+    $output .= "Disallow: /search/\n";
 
-    // Sitemap
-    echo "Sitemap: https://bimtekhub.com/sitemap.xml\n";
-   
+    $output .= "Sitemap: https://bimtekhub.com/sitemap.xml\n";
 }
 ?>
