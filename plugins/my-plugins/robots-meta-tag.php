@@ -13,6 +13,16 @@ function add_robots_meta_tag() {
 }
 add_action('wp_head', 'add_robots_meta_tag');
 
+// Function to add meta description
+function add_meta_description() {
+    $description = get_post_meta(get_the_ID(), 'meta_description', true); // Assuming the meta description is stored in post meta
+    if (strlen($description) > 160) {
+        $description = substr($description, 0, 160) . '...'; // Truncate to 160 characters
+    }
+    echo '<meta name="description" content="' . esc_attr($description) . '">' . "\n";
+}
+add_action('wp_head', 'add_meta_description');
+
 // Admin notice for plugin usage
 function robots_meta_tag_admin_notice() {
     echo '<div class="notice notice-info is-dismissible">

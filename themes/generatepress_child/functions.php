@@ -37,10 +37,11 @@ function add_meta_keywords() {
             }
             echo '<meta name="keywords" content="' . esc_attr(implode(', ', $keywords)) . '">' . "\n"; // Join tags into a string
         } else {
-            echo '<meta name="keywords" content="default, keywords">' . "\n"; // Default keywords if no tags
+            echo '<meta name="keywords" content="Bimbingan Teknis, Bimtek, Diklat, Pelatihan, ASN, OPD, DPRD, Dana Desa
+, keywords">' . "\n"; // Default keywords if no tags
         }
     } else {
-        echo '<meta name="keywords" content="default, keywords">' . "\n"; // Default keywords for non-single pages
+        echo '<meta name="keywords" content="Bimbingan Teknis, Bimtek, Diklat, Pelatihan, ASN, OPD, DPRD, Dana Desa, keywords">' . "\n"; // Default keywords for non-single pages
     }
 }
 add_action('wp_head', 'add_meta_keywords');
